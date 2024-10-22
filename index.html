@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Donation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .donation-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .crypto-box {
+            width: 300px;
+            padding: 20px;
+            margin: 10px;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+        .crypto-box span {
+            font-weight: bold;
+        }
+        .solana { background-color: #4E44CE; }
+        .ethereum { background-color: #3C3C3D; }
+        .bnb { background-color: #F3BA2F; }
+        .usdt { background-color: #26A17B; }
+        .copied-message {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Support Our Project with Crypto Donations</h1>
+    <div class="donation-container">
+        <div class="crypto-box solana" onclick="copyToClipboard('solana')">
+            <span>SOLANA (SOL)</span><br>
+            Wallet: <span id="solana-address">sol_wallet_address_here</span>
+            <div class="copied-message" id="solana-copied">Copied!</div>
+        </div>
+        <div class="crypto-box ethereum" onclick="copyToClipboard('ethereum')">
+            <span>ETHEREUM (ETH)</span><br>
+            Wallet: <span id="ethereum-address">eth_wallet_address_here</span>
+            <div class="copied-message" id="ethereum-copied">Copied!</div>
+        </div>
+        <div class="crypto-box bnb" onclick="copyToClipboard('bnb')">
+            <span>BINANCE COIN (BNB)</span><br>
+            Wallet: <span id="bnb-address">bnb_wallet_address_here</span>
+            <div class="copied-message" id="bnb-copied">Copied!</div>
+        </div>
+        <div class="crypto-box usdt" onclick="copyToClipboard('usdt')">
+            <span>USDT (Tether)</span><br>
+            Wallet: <span id="usdt-address">usdt_wallet_address_here</span>
+            <div class="copied-message" id="usdt-copied">Copied!</div>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(crypto) {
+            const address = document.getElementById(crypto + '-address').innerText;
+            const copiedMessage = document.getElementById(crypto + '-copied');
+            
+            // Copy the text to the clipboard
+            navigator.clipboard.writeText(address).then(() => {
+                // Show the "Copied" message
+                copiedMessage.style.display = 'block';
+                
+                // Hide the message after 2 seconds
+                setTimeout(() => {
+                    copiedMessage.style.display = 'none';
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
